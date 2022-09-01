@@ -15,9 +15,11 @@ items: MenuItem[] =[
     items: [
       {
         label:"Libros",
-      icon: PrimeIcons.BOOKMARK},
+      icon: PrimeIcons.BOOKMARK,
+    routerLink:["libros"]},
         {label:"Autores",
-      icon:PrimeIcons.USER}
+      icon:PrimeIcons.USER,
+    routerLink:["autores"]}
     ]
   }
 ];
