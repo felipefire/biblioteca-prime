@@ -7,6 +7,8 @@ import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import { LibrosComponent } from './libros/libros.component';
 import { AutoresComponent } from './autores/autores.component';
+import {HttpClientModule} from '@angular/common/http'; 
+import {TableModule} from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,10 @@ import { AutoresComponent } from './autores/autores.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonModule,MenubarModule
+    ButtonModule,
+    MenubarModule,
+    HttpClientModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
