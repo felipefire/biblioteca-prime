@@ -9,11 +9,19 @@ import { LibrosComponent } from './libros/libros.component';
 import { AutoresComponent } from './autores/autores.component';
 import {HttpClientModule} from '@angular/common/http'; 
 import {TableModule} from 'primeng/table';
+import { FormularioLibroComponent } from './libros/formulario-libro/formulario-libro.component';
+import {DialogModule} from 'primeng/dialog'
+import{MessagesModule} from 'primeng/messages'
+import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
     LibrosComponent,
-    AutoresComponent
+    AutoresComponent,
+    FormularioLibroComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +29,13 @@ import {TableModule} from 'primeng/table';
     ButtonModule,
     MenubarModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    MessagesModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]

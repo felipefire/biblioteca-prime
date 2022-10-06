@@ -7,21 +7,24 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-items: MenuItem[] =[
-  {
-    label:"Biblioteca",
-    icon: PrimeIcons.BOOK,
-    items: [
-      {
-        label:"Libros",
-      icon: PrimeIcons.BOOKMARK,
-    routerLink:["libros"]},
-        {label:"Autores",
-      icon:PrimeIcons.USER,
-    routerLink:["autores"]}
-    ]
-  }
-];
+ 
+  items: MenuItem[] = [
+    {
+      label: "Biblioteca",
+      icon: PrimeIcons.BOOK,
+      items: [
+        {
+          label: "Libros",
+          icon: PrimeIcons.BOOKMARK,
+          routerLink: ['libros']
+        },
+        {
+          label: "Autores",
+          icon: PrimeIcons.USERS,
+          routerLink: ['autores']
+        }
+      ]
+    }
+  ];
 
 }
