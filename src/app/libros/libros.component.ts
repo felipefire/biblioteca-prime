@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Message } from 'primeng/api';
+import { ConfirmationService, Message } from 'primeng/api';
 import { Libro } from '../interfaces/libro.interfaces';
 import { LibrosService } from '../servicios/libros.service';
 import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
@@ -11,45 +11,46 @@ import { FormularioLibroComponent } from './formulario-libro/formulario-libro.co
 })
 export class LibrosComponent implements OnInit {
 
-  @ViewChild ('formulario') formLibro!:FormularioLibroComponent;
+  @ViewChild('formulario') formLibro!: FormularioLibroComponent;
   listaLibros: Libro[] = []; //Aqui se guarda la lista de libros
   cargando: boolean = false; //Esta variable muestra la animacion de carga
   dialogoVisible: boolean = false; //Indica si el dialogo esta visible u oculto
-  
-  mensajes:Message[] = [];
+
+  mensajes: Message[] = [];
   tituloDialogo: string = 'Registrar libro';
 
   constructor(
-    private servioLibros: LibrosService
+    private servioLibros: LibrosService,
+    private servicioConfirm: ConfirmationService
   ) { }
 
   ngOnInit(): void {
     this.cargarLibros();
   }
 
-  cargarLibros(): void{
+  cargarLibros(): void {
     this.cargando = true;
     this.servioLibros.get().subscribe({
-      next: (datos) =>{
+      next: (datos) => {
         this.listaLibros = datos;
         this.cargando = false;
       },
       error: (e) => {
         console.log(e);
         this.cargando = false;
-        this.mensajes =[{severity: 'error', summary: 'Error al cargar libros', detail: e.error}]
+        this.mensajes = [{ severity: 'error', summary: 'Error al cargar libros', detail: e.error }]
       }
     });
   }
 
-  nuevo(){
+  nuevo() {
     this.tituloDialogo = 'Registrar libro';
     this.formLibro.limpiarFormulario();
     this.formLibro.modo = 'Registrar';
     this.dialogoVisible = true;
   }
 
-  editar(libro: Libro){
+  editar(libro: Libro) {
     this.formLibro.codigo = libro.id;
     this.formLibro.titulo = libro.titulo;
     this.formLibro.autor = libro.autor;
@@ -58,5 +59,25 @@ export class LibrosComponent implements OnInit {
     this.dialogoVisible = true;
     this.tituloDialogo = 'Editar libro';
   }
-
+  eliminar(libro: Libro) {
+    this.servicioConfirm.confirm({
+      message: "¿Realmente desea la Eliminacion'" + libro.titulo + '-' + libro.autor + "'?",
+      acceptLabel: 'Eliminar',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'p-button-danger',
+      acceptIcon: 'pi pi-trash',
+      accept: () => {
+        this.servioLibros.delete(libro).subscribe({
+          next: () => {
+            this.mensajes = [{ severity: 'success', summary: 'Exito', detail: 'Se elimino correctamente el libro.' }];
+            this.cargarLibros();
+          },
+          error: (e) => {
+            console.log(e);
+            this.mensajes = [{ severity: 'error', summary: 'Error al Eliminar ', detail: e.error }];
+          }
+        });
+      }
+    });
+  }
 }

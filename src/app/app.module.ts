@@ -16,6 +16,11 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { CardModule} from 'primeng/card';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,14 +35,17 @@ import { InputNumberModule } from 'primeng/inputnumber';
     MenubarModule,
     HttpClientModule,
     TableModule,
+    CardModule,
     DialogModule,
     MessagesModule,
     FormsModule,
     BrowserAnimationsModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    ConfirmDialogModule,
+    MessagesModule,
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
