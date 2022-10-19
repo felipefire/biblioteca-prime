@@ -19,6 +19,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { CardModule} from 'primeng/card';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CardModule} from 'primeng/card';
     InputNumberModule,
     ConfirmDialogModule,
     MessagesModule,
+    DropdownModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]
